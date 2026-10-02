@@ -3,11 +3,11 @@ import { User, BookText, Plus } from "lucide-react";
 
 class StudentForm extends React.Component {
   render() {
-    const { newStudent} = this.props;
+    const { newStudent, handleChange, handleAddChange } = this.props;
     return (
       <div className="student-form">
         <h2>Add New Student</h2>
-        <form className="add-student-form">
+        <form className="add-student-form" onSubmit={handleAddChange}>
           <div className="form-group">
             <label htmlFor="studentName">Student Name:</label>
             <div className="input">
@@ -16,8 +16,8 @@ class StudentForm extends React.Component {
                 type="text"
                 id="studentName"
                 name="name"
-                // value={newStudent.name}
-                // onChange={}
+                value={newStudent.name}
+                onChange={handleChange}
                 placeholder="Enter Student's full name"
               />
             </div>
@@ -29,13 +29,10 @@ class StudentForm extends React.Component {
               <select
                 name="subject"
                 id="studentSubject"
-                // value={newStudent.subject}
-                // onChange={}
-                // defaultValue="subject"
+                value={newStudent.subject}
+                onChange={handleChange}
               >
-                <option value="subject" disabled>
-                  Select a subject
-                </option>
+                <option value="subject">Select a subject</option>
                 <option value="Mathematics">Mathematics</option>
                 <option value="Physics">Physics</option>
                 <option value="Chemistry">Chemistry</option>
@@ -52,8 +49,8 @@ class StudentForm extends React.Component {
               type="text"
               id="studentGrade"
               name="grade"
-              // value={newStudent.grade}
-              // onChange={}
+              value={newStudent.grade}
+              onChange={handleChange}
               placeholder="Enter grade (0-100)"
               min="0"
               max="100"
