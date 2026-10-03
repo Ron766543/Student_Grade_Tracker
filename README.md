@@ -289,6 +289,18 @@ Form inputs get their value from state and update it on every change, so React i
 
 ---
 
+## 🐞 Known Issues and Improvement Ideas
+
+These are good practice tasks for learners:
+
+- [ ] Add an **edit** feature for students.
+- [ ] Save data to **localStorage** using `componentDidMount` (load) and `componentDidUpdate` (save).
+- [ ] Fetch initial data from an API inside `componentDidMount`.
+- [ ] Add **PropTypes** for props validation.
+- [ ] Convert the project to **functional components + hooks** and compare (`useState`, `useEffect`).
+
+---
+
 ## 🔁 Class Lifecycle vs Hooks (Quick Comparison)
 
 | Class Component | Functional Component (Hooks) |
