@@ -6,42 +6,50 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      student: [
-        {
-          id: 1,
-          name: "Alice Johson",
-          subject: "Mathematics",
-          grade: 92,
-          passed: true,
-        },
-        {
-          id: 2,
-          name: "Maria cumins",
-          subject: "Mathematics",
-          grade: 78,
-          passed: true,
-        },
-        {
-          id: 3,
-          name: "Alia Liberat",
-          subject: "Mathematics",
-          grade: 38,
-          passed: false,
-        },
-        {
-          id: 4,
-          name: "jimmy carry",
-          subject: "Mathematics",
-          grade: 91,
-          passed: true,
-        },
-      ],
+      student: [],
+
       newStudent: {
         name: "",
         subject: "",
         grade: "",
       },
     };
+  }
+
+  componentDidMount() {
+    const mockStudents = [
+      {
+        id: 1,
+        name: "Alice Johson",
+        subject: "Mathematics",
+        grade: 92,
+        passed: true,
+      },
+      {
+        id: 2,
+        name: "Maria cumins",
+        subject: "Mathematics",
+        grade: 78,
+        passed: true,
+      },
+      {
+        id: 3,
+        name: "Alia Liberat",
+        subject: "Mathematics",
+        grade: 38,
+        passed: false,
+      },
+      {
+        id: 4,
+        name: "jimmy carry",
+        subject: "Mathematics",
+        grade: 91,
+        passed: true,
+      },
+    ];
+    this.setState({
+      student: mockStudents,
+    });
   }
 
   handleChange = (e) => {
@@ -61,17 +69,24 @@ class App extends React.Component {
 
     const { name, subject, grade } = this.state.newStudent;
 
-    if (!name.trim() || !subject || !grade) {
+    if (!name.trim() || !subject || grade === "") {
       alert("Please enter all student details.");
       return;
     }
 
+    const gradeNumber = Number(grade);
+
+    if (!Number.isFinite(gradeNumber) || gradeNumber < 0 || gradeNumber > 100) {
+      alert("Grade must be between 0 and 100.");
+      return;
+    }
+
     const newStudent = {
-      id: this.state.student.length + 1,
-      name: this.state.newStudent.name,
-      subject: this.state.newStudent.subject,
-      grade: Number(this.state.newStudent.grade),
-      passed: Number(this.state.newStudent.grade) >= 40,
+      id: Date.now(),
+      name: name.trim(),
+      subject: subject,
+      grade: gradeNumber,
+      passed: gradeNumber >= 40,
     };
 
     this.setState({
@@ -85,9 +100,9 @@ class App extends React.Component {
     });
   };
 
-  handleDeleteBtn = (id)=>{
+  handleDeleteBtn = (id) => {
     this.setState({
-      student:this.state.student.filter((student)=> student.id !==id),
+      student: this.state.student.filter((student) => student.id !== id),
     });
   };
 
@@ -100,13 +115,15 @@ class App extends React.Component {
         </header>
         <section className="form">
           <StudentForm
-            students={this.state.student} // show all
             newStudent={this.state.newStudent} // for form
             handleChange={this.handleChange}
             handleAddChange={this.handleAddChange}
           />
         </section>
-        <StudentList students={this.state.student} handleDeleteBtn={this.handleDeleteBtn} />
+        <StudentList
+          students={this.state.student}
+          handleDeleteBtn={this.handleDeleteBtn}
+        />
       </div>
     );
   }
