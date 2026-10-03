@@ -289,23 +289,6 @@ Form inputs get their value from state and update it on every change, so React i
 
 ---
 
-## 🐞 Known Issues and Improvement Ideas
-
-These are good practice tasks for learners:
-
-- [ ] **Subject validation:** the default option has `value="subject"`, so it is treated as a real selection. Change it to `value=""` so the "Select a subject" check works.
-- [ ] **Grade input:** it is `type="text"`, so `min`/`max` have no effect. Use `type="number"` and validate that the grade is between 0 and 100.
-- [ ] **Unique IDs:** `id: this.state.student.length + 1` can create duplicate IDs after deleting a student. Use `Date.now()` or a counter instead.
-- [ ] **Avoid mutating props:** in `StudentList`, `filteredStudent.sort(...)` sorts the filtered array in place. Copy it first with `[...filteredStudent].sort(...)` to be safe.
-- [ ] **Grade `0`:** `!grade` treats an empty string as missing, but check that a grade of `0` is handled the way you expect.
-- [ ] Add an **edit** feature for students.
-- [ ] Save data to **localStorage** using `componentDidMount` (load) and `componentDidUpdate` (save).
-- [ ] Fetch initial data from an API inside `componentDidMount`.
-- [ ] Add **PropTypes** for props validation.
-- [ ] Convert the project to **functional components + hooks** and compare (`useState`, `useEffect`).
-
----
-
 ## 🔁 Class Lifecycle vs Hooks (Quick Comparison)
 
 | Class Component | Functional Component (Hooks) |
