@@ -32,7 +32,7 @@ class StudentForm extends React.Component {
                 value={newStudent.subject}
                 onChange={handleChange}
               >
-                <option value="subject">Select a subject</option>
+                <option value="">Select a subject</option>
                 <option value="Mathematics">Mathematics</option>
                 <option value="Physics">Physics</option>
                 <option value="Chemistry">Chemistry</option>
